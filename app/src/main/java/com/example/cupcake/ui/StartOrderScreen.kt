@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -49,6 +50,7 @@ import com.example.cupcake.data.DataSource
 @Composable
 fun StartOrderScreen(
     quantityOptions: List<Pair<Int, Int>>,
+    onNextButtonClicked: (Int) -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -84,7 +86,7 @@ fun StartOrderScreen(
                 quantityOptions.forEach { item ->
                     SelectQuantityButton(
                         labelResourceId = item.first,
-                        onClick = {}
+                        onClick = { onNextButtonClicked(item.second) }
                     )
                 }
             }
@@ -115,6 +117,7 @@ fun SelectQuantityButton(
 fun StartOrderPreview(){
     StartOrderScreen(
         quantityOptions = DataSource.quantityOptions,
+        onNextButtonClicked = {},
         modifier = Modifier.fillMaxSize().padding(dimensionResource(R.dimen.padding_medium))
     )
 }
